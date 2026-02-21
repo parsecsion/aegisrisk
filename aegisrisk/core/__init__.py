@@ -1,3 +1,3 @@
 """
-Core domain models for TradeGuard.
+Core domain models for AegisRisk.
 """

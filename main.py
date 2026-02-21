@@ -5,11 +5,11 @@ import sys
 import time
 from typing import NoReturn
 
-from tradeguard.core.models import Decision
-from tradeguard.engine.bridge import PrologBridge
-from tradeguard.engine.fuzzifier import fuzzify
-from tradeguard.simulator.generator import generate_snapshot
-from tradeguard.utils.logger import log_decision
+from aegisrisk.core.models import Decision
+from aegisrisk.engine.bridge import PrologBridge
+from aegisrisk.engine.fuzzifier import fuzzify
+from aegisrisk.simulator.generator import generate_snapshot
+from aegisrisk.utils.logger import log_decision
 
 
 def _run_loop(iterations: int | None, sleep_seconds: float) -> None:
@@ -34,11 +34,11 @@ def _run_loop(iterations: int | None, sleep_seconds: float) -> None:
                 break
             time.sleep(sleep_seconds)
     except KeyboardInterrupt:
-        print("\nShutting down TradeGuard main loop gracefully.", file=sys.stderr)
+        print("\nShutting down AegisRisk main loop gracefully.", file=sys.stderr)
 
 
 def main(argv: list[str] | None = None) -> NoReturn:
-    parser = argparse.ArgumentParser(description="TradeGuard pre-trade risk engine demo")
+    parser = argparse.ArgumentParser(description="AegisRisk pre-trade risk engine demo")
     parser.add_argument(
         "--iterations",
         type=int,

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tradeguard.core.models import MarketState, TradeTicket
+from aegisrisk.core.models import MarketState, TradeTicket
 
 
 @dataclass(slots=True)

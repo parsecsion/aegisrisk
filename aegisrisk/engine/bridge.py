@@ -6,7 +6,7 @@ from typing import Any
 
 from pyswip import Prolog  # type: ignore[import]
 
-from tradeguard.core.models import Decision, DecisionStatus, MarketState, TradeTicket
+from aegisrisk.core.models import Decision, DecisionStatus, MarketState, TradeTicket
 
 
 @dataclass(slots=True)

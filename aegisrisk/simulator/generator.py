@@ -4,7 +4,7 @@ import random
 from collections.abc import Iterable
 from dataclasses import dataclass
 
-from tradeguard.core.models import MarketState, OrderType, Side, TimeInForce, TradeTicket
+from aegisrisk.core.models import MarketState, OrderType, Side, TimeInForce, TradeTicket
 
 _SYMBOLS: tuple[str, ...] = (
     "eurusd",

@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import TextIO
 
-from tradeguard.core.models import Decision, MarketState, TradeTicket
+from aegisrisk.core.models import Decision, MarketState, TradeTicket
 
 
 def _default_log_path() -> Path:

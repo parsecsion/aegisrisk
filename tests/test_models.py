@@ -1,6 +1,6 @@
 import pytest
 
-from tradeguard.core.models import MarketState, OrderType, Side, TimeInForce, TradeTicket
+from aegisrisk.core.models import MarketState, OrderType, Side, TimeInForce, TradeTicket
 
 
 def test_ticket_validation() -> None:

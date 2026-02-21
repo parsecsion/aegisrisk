@@ -1,15 +1,15 @@
-# TradeGuard Risk Engine Demo
+# AegisRisk Engine Demo
 
-TradeGuard is a demonstration of a pre-trade risk engine that fuses a high-performance Python orchestration layer with a declarative **Prolog** compliance rulebase.
+AegisRisk is a demonstration of a pre-trade risk engine that fuses a high-performance Python orchestration layer with a declarative **Prolog** compliance rulebase.
 
 It evaluates synthetic `TradeTickets`, validates them against complex `MarketStates` using fuzzy logic models, and cleanly isolates business rules (e.g., restricted macro sessions, hard asset leverage limits, tier-based exposure caps) into logical rules rather than nested `if/then` statements.
 
 ## Project Architecture
 
-1. **Python Domain Models**: `tradeguard/core/models.py` strict typed representations of trades.
-2. **Prolog Knowledge Base**: `tradeguard/knowledge_base/rules.pl` contains declarative rules.
-3. **Prolog Bridge**: `tradeguard/engine/bridge.py` dynamically interfaces with the SWI-Prolog engine using `PySwip`.
-4. **Fuzzifier**: `tradeguard/engine/fuzzifier.py` bridges continuous float limits (e.g. spread) into logical fuzzy buckets (e.g `wide`, `tight`) for Prolog evaluation.
+1. **Python Domain Models**: `aegisrisk/core/models.py` strict typed representations of trades.
+2. **Prolog Knowledge Base**: `aegisrisk/knowledge_base/rules.pl` contains declarative rules.
+3. **Prolog Bridge**: `aegisrisk/engine/bridge.py` dynamically interfaces with the SWI-Prolog engine using `PySwip`.
+4. **Fuzzifier**: `aegisrisk/engine/fuzzifier.py` bridges continuous float limits (e.g. spread) into logical fuzzy buckets (e.g `wide`, `tight`) for Prolog evaluation.
 
 ## Prerequisites
 

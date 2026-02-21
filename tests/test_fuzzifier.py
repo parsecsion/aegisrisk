@@ -1,5 +1,5 @@
-from tradeguard.core.models import MarketState, TradeTicket
-from tradeguard.engine.fuzzifier import (
+from aegisrisk.core.models import MarketState, TradeTicket
+from aegisrisk.engine.fuzzifier import (
     _exposure_level,
     _sentiment_level,
     _spread_level,

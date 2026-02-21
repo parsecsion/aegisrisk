@@ -1,4 +1,4 @@
-% TradeGuard Knowledge Base (SWI-Prolog)
+% AegisRisk Knowledge Base (SWI-Prolog)
 %
 % Facts asserted by Python (via PySwip):
 %   ticket(TicketId, Symbol, Side, Lots, Leverage).

@@ -4,9 +4,9 @@ Integration tests ensuring Python models properly align with Prolog rules.
 
 import pytest
 
-from tradeguard.core.models import MarketState, OrderType, Side, TimeInForce, TradeTicket
-from tradeguard.engine.bridge import PrologBridge
-from tradeguard.engine.fuzzifier import fuzzify
+from aegisrisk.core.models import MarketState, OrderType, Side, TimeInForce, TradeTicket
+from aegisrisk.engine.bridge import PrologBridge
+from aegisrisk.engine.fuzzifier import fuzzify
 
 
 @pytest.fixture
