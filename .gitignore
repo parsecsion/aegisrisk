@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Env
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Project specifics
+tradeguard/audit_log.txt
+audit_log.txt
+
+# typing and linters
+.mypy_cache/
+.ruff_cache/
