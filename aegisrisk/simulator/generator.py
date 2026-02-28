@@ -84,14 +84,15 @@ def generate_snapshot(counter: int, rng: random.Random | None = None) -> Simulat
     order_type = OrderType.MARKET if rng.random() < 0.6 else OrderType.LIMIT
     tif = rng.choice((TimeInForce.DAY, TimeInForce.GTC, TimeInForce.IOC, TimeInForce.FOK))
 
-    lots = max(0.01, rng.lognormvariate(0.0, 1.0))  # skew towards small tickets
-    lots = min(lots, 60.0)
+    # skew towards small tickets (between 0.1 and 5.0 lots)
+    lots = max(0.1, min(rng.lognormvariate(-0.5, 0.5), 5.0))
 
     base = _base_price(symbol)
     # Price is near base with some noise.
     price = base * (1.0 + rng.uniform(-0.01, 0.01))
 
-    leverage = rng.choice((5.0, 10.0, 20.0, 30.0, 40.0, 60.0))
+    # Choose lower leverages by default to avoid constant rejection
+    leverage = rng.choice((5.0, 10.0, 20.0, 30.0))
 
     ticket = TradeTicket(
         ticket_id=counter,
@@ -113,10 +114,10 @@ def generate_snapshot(counter: int, rng: random.Random | None = None) -> Simulat
     bid = mid - spread / 2.0
     ask = mid + spread / 2.0
 
-    volatility = rng.uniform(5.0, 100.0)
-    balance = rng.uniform(500.0, 50_000.0)
-    open_exposure = rng.uniform(0.0, balance * 0.9)
-    news_sentiment = rng.uniform(-1.0, 1.0)
+    volatility = rng.uniform(5.0, 35.0)  # less extreme volatility
+    balance = rng.uniform(5000.0, 150_000.0) # higher balances so exposure ratios survive
+    open_exposure = rng.uniform(0.0, balance * 0.2) # less existing exposure
+    news_sentiment = rng.uniform(-0.5, 0.5) # more neutral news
 
     market = MarketState(
         symbol=symbol,
