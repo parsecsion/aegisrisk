@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import sys
 import time
-from typing import NoReturn
+
 
 from aegisrisk.core.models import Decision
 from aegisrisk.engine.bridge import PrologBridge
@@ -37,7 +37,7 @@ def _run_loop(iterations: int | None, sleep_seconds: float) -> None:
         print("\nShutting down AegisRisk main loop gracefully.", file=sys.stderr)
 
 
-def main(argv: list[str] | None = None) -> NoReturn:
+def main(argv: list[str] | None = None):
     parser = argparse.ArgumentParser(description="AegisRisk pre-trade risk engine demo")
     parser.add_argument(
         "--iterations",
@@ -54,7 +54,7 @@ def main(argv: list[str] | None = None) -> NoReturn:
     args = parser.parse_args(argv)
 
     _run_loop(args.iterations, args.interval)
-    raise SystemExit(0)
+    sys.exit(0)
 
 
 if __name__ == "__main__":

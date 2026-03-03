@@ -9,7 +9,7 @@ from aegisrisk.engine.bridge import PrologBridge
 from aegisrisk.engine.fuzzifier import fuzzify
 from aegisrisk.simulator.generator import generate_snapshot, _SYMBOLS
 
-# app config & styling setup
+# Set up the streamlit page (must be first command)
 st.set_page_config(
     page_title="AEGIS: CORE SURVEILLANCE",
     page_icon="🛡️",
@@ -17,13 +17,13 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Advanced CSS Injection for Institutional Terminal Feel
+# Cool hacker CSS I found / tweaked
 st.markdown("""
 <style>
     /* Import Premium Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
-    /* Global Varsity Theme */
+    /* Varsity Theme Colors */
     :root {
         --terminal-bg: #090b0f;
         --panel-bg: rgba(18, 22, 31, 0.65);
@@ -55,7 +55,7 @@ st.markdown("""
         max-width: 1600px;
     }
 
-    /* Top Navigation Ribbon */
+    /* Top Nav */
     .nav-ribbon {
         display: flex;
         justify-content: space-between;
@@ -94,7 +94,7 @@ st.markdown("""
         gap: 2rem;
     }
 
-    /* Glassmorphic Panels */
+    /* Panels */
     .glass-panel {
         background: var(--panel-bg);
         backdrop-filter: blur(16px);
@@ -145,7 +145,7 @@ st.markdown("""
     .data-value.up { color: var(--neon-green); }
     .data-value.down { color: var(--neon-red); }
 
-    /* The Intercept (Decision Core) */
+    /* The big status box */
     .intercept-core {
         display: flex;
         flex-direction: column;
@@ -187,7 +187,7 @@ st.markdown("""
         border: 1px dashed var(--panel-border);
     }
 
-    /* Semantic Atom Tags (Fuzzifier) */
+    /* Fuzzifier tags */
     .atom-container {
         display: flex;
         flex-wrap: wrap;
@@ -284,7 +284,7 @@ st.markdown("""
         background-color: rgba(0,0,0,0.5) !important; 
         border-color: var(--panel-border) !important; 
     }
-    /* Premium CTA Buttons */
+    /* Buttons (spent way too long on this gradient/hover) */
     .stButton>button {
         background: rgba(15, 23, 42, 0.6) !important;
         backdrop-filter: blur(10px) !important;

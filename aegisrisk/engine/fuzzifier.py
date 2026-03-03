@@ -1,11 +1,11 @@
-from __future__ import annotations
+from typing import Dict
 
 from dataclasses import dataclass
 
 from aegisrisk.core.models import MarketState, TradeTicket
 
 
-@dataclass(slots=True)
+@dataclass
 class FuzzyFacts:
     """
     Fuzzified view of the numeric state, ready to assert into Prolog.
@@ -18,7 +18,7 @@ class FuzzyFacts:
     sentiment_level: str
     session: str
 
-    def as_dict(self) -> dict[str, str]:
+    def as_dict(self) -> Dict[str, str]:
         return {
             "volatility_level": self.volatility_level,
             "spread_level": self.spread_level,
@@ -28,15 +28,15 @@ class FuzzyFacts:
         }
 
 
-def _volatility_level(volatility_pct: float) -> str:
+def _volatility_level(vol_pct: float) -> str:
     """
     Map numeric volatility (percent) to a fuzzy bucket.
     """
-    if volatility_pct < 15.0:
+    if vol_pct < 15.0:
         return "low"
-    if volatility_pct < 30.0:
+    if vol_pct < 30.0:
         return "medium"
-    if volatility_pct < 60.0:
+    if vol_pct < 60.0:
         return "high"
     return "extreme"
 
@@ -45,6 +45,7 @@ def _spread_level(bid: float, ask: float) -> str:
     """
     Map spread to fuzzy buckets based on relative width vs. mid price.
     """
+    # calculate relative spread so it works for JPY and USD alike
     mid = (bid + ask) / 2.0
     if mid <= 0.0:
         return "normal"
