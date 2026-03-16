@@ -530,7 +530,7 @@ with manual_tab:
         
         with form_col1:
             st.markdown('<h3 style="color: var(--text-accent); border-bottom: 1px solid var(--panel-border); padding-bottom: 0.5rem; margin-bottom: 1rem;">ORDER DEFINITION</h3>', unsafe_allow_html=True)
-            symbol = st.selectbox("INSTRUMENT", _SYMBOLS + ("xagusd", "btc_fake", "undefined_asset"))
+            symbol = st.selectbox("INSTRUMENT", _SYMBOLS + ("xagusd", "btcusd", "undefined_asset"))
             
             rad1, rad2 = st.columns(2)
             side_str = rad1.radio("DIRECTION", ["buy", "sell"], horizontal=True)
