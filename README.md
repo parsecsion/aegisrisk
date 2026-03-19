@@ -1,60 +1,120 @@
-# AegisRisk Engine Demo
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue.svg?logo=python&logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/Streamlit-1.30+-FF4B4B.svg?logo=streamlit&logoColor=white" alt="Streamlit">
+  <img src="https://img.shields.io/badge/SWI--Prolog-9.0+-darkgray.svg?logo=prolog&logoColor=white" alt="SWI-Prolog">
+  <img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build Passing">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT">
+</div>
 
-AegisRisk is a demonstration of a pre-trade risk engine that fuses a high-performance Python orchestration layer with a declarative **Prolog** compliance rulebase.
+# AegisRisk: Algorithmic Pre-Trade Compliance Engine
 
-It evaluates synthetic `TradeTickets`, validates them against complex `MarketStates` using fuzzy logic models, and cleanly isolates business rules (e.g., restricted macro sessions, hard asset leverage limits, tier-based exposure caps) into logical rules rather than nested `if/then` statements.
+**AegisRisk** is an advanced, high-performance pre-trade risk and compliance engine. It explores the fusion of modern Python data orchestration seamlessly integrated with a classic **SWI-Prolog Expert System**. 
 
-## Project Architecture
+Unlike conventional trading engines that rely on brittle, nested `if-else` barriers, AegisRisk leverages a **Hybrid Knowledge Representation architecture**. It uses fuzzy logic to abstract continuous market streams (like spread and volatility) into semantic atoms, validating them against 25+ declarative Prolog risk policies prior to exchange routing.
 
-1. **Python Domain Models**: `aegisrisk/core/models.py` strict typed representations of trades.
-2. **Prolog Knowledge Base**: `aegisrisk/knowledge_base/rules.pl` contains declarative rules.
-3. **Prolog Bridge**: `aegisrisk/engine/bridge.py` dynamically interfaces with the SWI-Prolog engine using `PySwip`.
-4. **Fuzzifier**: `aegisrisk/engine/fuzzifier.py` bridges continuous float limits (e.g. spread) into logical fuzzy buckets (e.g `wide`, `tight`) for Prolog evaluation.
+---
 
-## Prerequisites
+## ⚡ Key Features
 
-Because this project uses `PySwip`, **you must install SWI-Prolog** on your operating system and ensure its binaries are on your PATH.
+*   **Logic-Based Inference:** Over 80 distinct ontological facts and 25 dynamic IF-THEN policies separated from the codebase logic using standard backward chaining.
+*   **Continuous-to-Discrete Fuzzifier:** Synthetically scores metrics (`volatility`, `spread`, `exposure`) into discrete semantic states (e.g., `wide`, `extreme`) to prevent context-blind rejections.
+*   **Fail-Fast Circuit Breakers:** Executes real-time validation cuts (`!`) inside Prolog, isolating fat-finger errors before incurring cross-margin computational overhead.
+*   **Institutional Streamlit Terminal:** Contains a Direct Market Access (DMA) testing terminal UI and an automated stochastic simulator to benchmark throughput. 
+*   **Deterministic Audit Ledger:** Cryptographically structured, immutable JSONL logging of every inference traversal.
 
-- [SWI-Prolog Download Page](https://www.swi-prolog.org/download/stable)
+---
 
-## Installation
+## 🏗️ System Architecture
 
-1. Create a Python virtual environment (recommended):
+The project fundamentally divides into four primary layers:
+
+```mermaid
+flowchart LR
+    A[<b>Simulated Feed</b><br>Trade Requests] -->|Crisp Metrics| B(<b>Python Orchestrator</b><br>Fuzzifier Module)
+    B -->|Semantic Atoms| C{<b>Prolog Engine</b><br>Backward Chaining}
+    C -.->|Unifies Facts| D[(<b>Knowledge Base</b><br>rules.pl)]
+    C -->|Cut Operator / Resolution| E[<b>Interceptor</b><br>Approve / Drop]
+```
+
+1. **Python Domain Models (`core/models.py`)**: Immutable dataclasses strictly defining `TradeTicket` payload structures and `MarketState` environments.
+2. **The Fuzzifier (`engine/fuzzifier.py`)**: The data-preparation bridge dynamically mapping floating-point volatility and liquidity constraints into categorical Prolog facts.
+3. **Prolog Interop FFI (`engine/bridge.py`)**: The runtime wrapper manipulating the `PySwip` architecture, asserting and retracting working memory dynamically per execution.
+4. **Knowledge Base (`knowledge_base/rules.pl`)**: The isolated, declarative regulatory framework maintaining tiered compliance caps. 
+
+---
+
+## 🛠️ Prerequisites
+
+Because AegisRisk operates a hybrid runtime utilizing the Foreign Function Interface (FFI) via `PySwip`, **SWI-Prolog** is a mandatory system dependency.
+
+1. Install [SWI-Prolog](https://www.swi-prolog.org/download/stable) on your host machine.
+2. Ensure the binary (e.g., `swipl`) is explicitly available in your environment `PATH`.
+
+---
+
+## 🚀 Quickstart Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/aegisrisk.git
+   cd aegisrisk
+   ```
+
+2. **Create a secure virtual environment:**
    ```bash
    python -m venv venv
-   source venv/bin/activate  # Or `venv\Scripts\activate` on Windows
+   source venv/bin/activate  # Windows: venv\Scriptsctivate
    ```
-2. Install dependencies:
+
+3. **Install exact dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-## Running the Demo
+---
 
-Run the main application to start continuously simulating and evaluating trades. Output will print to standard output (with colors) and be fully serialized into `./audit_log.txt`.
+## 💻 Running the Application
+
+### 1. Interactive Compliance Dashboard (Streamlit UI)
+AegisRisk comes with a fully stylized frontend containing both a **Live Surveillance** mode (running rapid algorithmic stochastics) and a **Manual Order Terminal** for injecting specific edge-cases.
 
 ```bash
-# Run infinitely with a 1-second interval
+streamlit run app.py
+```
+
+### 2. High-Velocity CLI Execution
+To run bare-metal execution benchmarks bypassing the UI rendering engine:
+
+```bash
+# Run infinitely with a default 1-second interval
 python main.py
 
-# Run exactly 10 iterations with a 0.5 sec sleep
+# Run exactly 10 stress iterations with a 0.5 sec sleep latency
 python main.py --iterations 10 --interval 0.5
 ```
 
-## Running Tests
+---
 
-An extensive test suite using `pytest` verifies the Prolog engine integrations and business rule logic. 
+## 🧪 Testing and CI/CD
+
+An extensive regression test suite uses `pytest` to verify Prolog environment bindings, semantic accuracy within the fuzzifier, and memory-leak prevention inside the FFI.
 
 ```bash
+# Execute unit testing suite
 python -m pytest tests/
 ```
 
-## Development & Code Quality
-
-Linters and static-typing checks are provided via `ruff` and `mypy`:
+Code quality formatting and strict typing bounds are rigidly enforced via `ruff` and `mypy` before any PR merges:
 
 ```bash
 ruff check .
 ruff format .
 mypy .
 ```
+
+---
+
+## 📄 License & Attribution
+
+This project is licensed and protected under the **MIT License**. See the `LICENSE` file for full terms and agreements. 
+Engineered for academic exploration in the domains of *Knowledge-Based Systems* and *Artificial Intelligence*.
